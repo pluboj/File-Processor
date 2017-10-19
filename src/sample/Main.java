@@ -18,14 +18,15 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class Main extends Application {
 
     private Desktop desktop = Desktop.getDesktop();
+    private ProcessToC toc;
 
     @Override
     public void start(Stage primaryStage) {
@@ -58,7 +59,8 @@ public class Main extends Application {
                     public void handle(ActionEvent event) {
                         File file = fileChooser.showOpenDialog(primaryStage);
                         if (file != null) {
-                            openFile(file);
+                            toc = new ProcessToC(file);
+                            toc.generateToC();
                         }
                     }
                 }
