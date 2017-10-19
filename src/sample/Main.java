@@ -1,12 +1,8 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -17,15 +13,11 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Main extends Application {
 
-    private Desktop desktop = Desktop.getDesktop();
     private ProcessToC toc;
 
     @Override
@@ -54,32 +46,17 @@ public class Main extends Application {
         grid.add(hbBtn, 1, 4);
 
         openButton.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        File file = fileChooser.showOpenDialog(primaryStage);
-                        if (file != null) {
-                            toc = new ProcessToC(file);
-                            toc.generateToC();
-                        }
+                event -> {
+                    File file = fileChooser.showOpenDialog(primaryStage);
+                    if (file != null) {
+                        toc = new ProcessToC(file);
+                        toc.generateToC();
                     }
                 }
         );
 
         primaryStage.show();
     }
-
-    private void openFile(File file) {
-        try {
-            desktop.open(file);
-        } catch (IOException e) {
-            Logger.getLogger(
-                   Main.class.getName()).log(
-                           Level.SEVERE, null, e
-            );
-        }
-    }
-
 
     public static void main(String[] args) {
         launch(args);
