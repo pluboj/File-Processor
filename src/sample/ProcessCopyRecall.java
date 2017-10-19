@@ -5,11 +5,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProcessToC {
+/*
+* Input: text file with variables copied from shell.spss
+* Output: new text file with variables formatted for pasting
+* into CopyRecallData for chart studies
+* */
+
+public class ProcessCopyRecall {
 
     private File file;
 
-    public ProcessToC(File file) {
+    public ProcessCopyRecall(File file) {
         this.file = file;
     }
 
@@ -31,14 +37,14 @@ public class ProcessToC {
             }
             createFile(sb);
         } catch (FileNotFoundException e) {
-            Logger.getLogger(ProcessToC.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
         }catch (IOException e) {
-            Logger.getLogger(ProcessToC.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             try {
                 bufferedReader.close();
             } catch (IOException e) {
-                Logger.getLogger(ProcessToC.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
             }
         }
     }
@@ -51,7 +57,7 @@ public class ProcessToC {
             writer.write(sb.toString());
         }
         catch (IOException e) {
-            Logger.getLogger(ProcessToC.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }
