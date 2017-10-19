@@ -40,6 +40,7 @@ public class Main extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         Scene scene = new Scene(grid, 250, 150);
+        scene.getStylesheets().add("./sample/main.css");
         primaryStage.setScene(scene);
 
         Text scenetitle = new Text("File Processor");
@@ -47,7 +48,7 @@ public class Main extends Application {
         grid.add(scenetitle, 0, 0, 2, 1);
 
         Button openButton = new Button("Open Resource File");
-        HBox hbBtn = new HBox(10);
+        HBox hbBtn = new HBox(5);
         hbBtn.getChildren().add(openButton);
         grid.add(hbBtn, 1, 4);
 
