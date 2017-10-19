@@ -19,7 +19,7 @@ public class ProcessCopyRecall {
         this.file = file;
     }
 
-    public void generateToC() {
+    public void generateCopyRecallVars() {
         BufferedReader bufferedReader = null;
         StringBuilder sb = new StringBuilder();
         int lineBreak = 10;

@@ -18,7 +18,7 @@ import java.io.*;
 
 public class Main extends Application {
 
-    private ProcessCopyRecall toc;
+    private ProcessCopyRecall recall;
 
     @Override
     public void start(Stage primaryStage) {
@@ -51,8 +51,8 @@ public class Main extends Application {
                 event -> {
                     File file = fileChooser.showOpenDialog(primaryStage);
                     if (file != null) {
-                        toc = new ProcessCopyRecall(file);
-                        toc.generateToC();
+                        recall = new ProcessCopyRecall(file);
+                        recall.generateCopyRecallVars();
                     }
                 }
         );
