@@ -24,7 +24,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("File Processor v1.0");
 
+        File desktop = javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory();
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(desktop);
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -33,7 +35,7 @@ public class Main extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
 
         Scene scene = new Scene(grid, 250, 150);
-        scene.getStylesheets().add("./sample/main.css");
+        scene.getStylesheets().add("sample/main.css");
         primaryStage.setScene(scene);
 
         Text scenetitle = new Text("File Processor");

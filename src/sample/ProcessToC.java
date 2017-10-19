@@ -16,12 +16,18 @@ public class ProcessToC {
     public void generateToC() {
         BufferedReader bufferedReader = null;
         StringBuilder sb = new StringBuilder();
+        int lineBreak = 10;
 
         try {
             bufferedReader = new BufferedReader(new FileReader(file));
             String text;
+            int counter = 0;
             while ((text = bufferedReader.readLine()) != null) {
+                counter++;
                 sb.append("'"+text+"',");
+                if (counter % lineBreak == 0) {
+                    sb.append("\r\n");
+                }
             }
             createFile(sb);
         } catch (FileNotFoundException e) {
