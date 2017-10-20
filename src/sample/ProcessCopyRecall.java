@@ -53,7 +53,7 @@ public class ProcessCopyRecall {
         File path = javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory();
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(path+"/toc.txt"), StandardCharsets.UTF_8))) {
+                new FileOutputStream(path+"/copyRecall.txt"), StandardCharsets.UTF_8))) {
             writer.write(sb.toString());
         }
         catch (IOException e) {

@@ -1,13 +1,12 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -51,10 +50,12 @@ public class Main extends Application {
         final ToggleGroup group = new ToggleGroup();
         RadioButton toc = new RadioButton("Process ToC");
         toc.setToggleGroup(group);
+        toc.setId("toc");
         grid.add(toc, 0, 1);
         RadioButton cr = new RadioButton("Process CopyRecall");
         cr.setToggleGroup(group);
         cr.setSelected(true);
+        cr.setId("cr");
         cr.requestFocus();
         grid.add(cr, 0, 2);
 
@@ -66,10 +67,17 @@ public class Main extends Application {
 
         openButton.setOnAction(
                 event -> {
+                    RadioButton chk = (RadioButton)group.getSelectedToggle();
+                    String selectedRadio = chk.getId();
                     File file = fileChooser.showOpenDialog(primaryStage);
                     if (file != null) {
-                        recall = new ProcessCopyRecall(file);
-                        recall.generateCopyRecallVars();
+                        if (selectedRadio.equalsIgnoreCase("cr")) {
+                            recall = new ProcessCopyRecall(file);
+                            recall.generateCopyRecallVars();
+                        } else if (selectedRadio.equalsIgnoreCase("toc")) {
+                            //TODO:pl - add ProcessToC
+                            System.out.println("Process ToC...");
+                        }
                     }
                 }
         );
