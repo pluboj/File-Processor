@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 * Input: text file with variables copied from singlePageSurveyDefinition
 * Output: new text file with variables formatted for pasting into ToC
 * */
-public class ProcessToC {
+public class ProcessToC extends FileCreator {
     private File file;
     private final int LINE_BREAK = 10;
 
@@ -18,6 +18,7 @@ public class ProcessToC {
 
     public void generateToCVars() {
         StringBuilder sb = getQuestionIds();
+        createFile(sb,"TOC.txt");
         //TODO:pl - remove console output
         System.out.println(sb);
     }

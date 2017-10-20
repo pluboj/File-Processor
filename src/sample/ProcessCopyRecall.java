@@ -1,7 +1,6 @@
 package sample;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,7 +10,7 @@ import java.util.logging.Logger;
 * into CopyRecallData for chart studies
 * */
 
-public class ProcessCopyRecall {
+public class ProcessCopyRecall extends FileCreator{
 
     private File file;
     private final int LINE_BREAK = 10;
@@ -33,22 +32,10 @@ public class ProcessCopyRecall {
                     sb.append("\r\n");
                 }
             }
-            createFile(sb);
+            createFile(sb,"COPYRECALL.txt");
         } catch (FileNotFoundException e) {
             Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
         }catch (IOException e) {
-            Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    private void createFile(StringBuilder sb) {
-        File path = javax.swing.filechooser.FileSystemView.getFileSystemView().getHomeDirectory();
-
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(path+"/copyRecall.txt"), StandardCharsets.UTF_8))) {
-            writer.write(sb.toString());
-        }
-        catch (IOException e) {
             Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
         }
     }
