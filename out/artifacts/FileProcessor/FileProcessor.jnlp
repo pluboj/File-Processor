@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="FileProcessor.jar" size="8084" download="eager" />
+    <jar href="FileProcessor.jar" size="10793" download="eager" />
   </resources>
   <jfx:javafx-desc  width="250" height="150" main-class="sample.Main"  name="FileProcessor" />
   <update check="background"/>

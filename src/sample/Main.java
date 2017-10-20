@@ -64,6 +64,7 @@ public class Main extends Application {
         Button openButton = new Button("Open Resource File");
         HBox hbBtn = new HBox(5);
         hbBtn.getChildren().add(openButton);
+        openButton.setId("chooser-button");
         grid.add(hbBtn, 0, 4, 2, 1);
 
         openButton.setOnAction(
