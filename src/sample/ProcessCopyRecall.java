@@ -14,24 +14,22 @@ import java.util.logging.Logger;
 public class ProcessCopyRecall {
 
     private File file;
+    private final int LINE_BREAK = 10;
 
     public ProcessCopyRecall(File file) {
         this.file = file;
     }
 
     public void generateCopyRecallVars() {
-        BufferedReader bufferedReader = null;
         StringBuilder sb = new StringBuilder();
-        int lineBreak = 10;
 
-        try {
-            bufferedReader = new BufferedReader(new FileReader(file));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             String text;
             int counter = 0;
             while ((text = bufferedReader.readLine()) != null) {
                 counter++;
                 sb.append("'"+text+"',");
-                if (counter % lineBreak == 0) {
+                if (counter % LINE_BREAK == 0) {
                     sb.append("\r\n");
                 }
             }
@@ -40,12 +38,6 @@ public class ProcessCopyRecall {
             Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
         }catch (IOException e) {
             Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                Logger.getLogger(ProcessCopyRecall.class.getName()).log(Level.SEVERE, null, e);
-            }
         }
     }
 

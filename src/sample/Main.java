@@ -21,6 +21,7 @@ import java.io.*;
 public class Main extends Application {
 
     private ProcessCopyRecall recall;
+    private ProcessToC tocVars;
 
     @Override
     public void start(Stage primaryStage) {
@@ -75,8 +76,8 @@ public class Main extends Application {
                             recall = new ProcessCopyRecall(file);
                             recall.generateCopyRecallVars();
                         } else if (selectedRadio.equalsIgnoreCase("toc")) {
-                            //TODO:pl - add ProcessToC
-                            System.out.println("Process ToC...");
+                            tocVars = new ProcessToC(file);
+                            tocVars.generateToCVars();
                         }
                     }
                 }
