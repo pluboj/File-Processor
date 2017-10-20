@@ -19,8 +19,6 @@ public class ProcessToC extends FileCreator {
     public void generateToCVars() {
         StringBuilder sb = getQuestionIds();
         createFile(sb,"TOC.txt");
-        //TODO:pl - remove console output
-        System.out.println(sb);
     }
 
     private StringBuilder getQuestionIds() {
@@ -33,7 +31,12 @@ public class ProcessToC extends FileCreator {
                     counter++;
                     line = line.replace("[Question ID: ","'");
                     line = line.replace("]","',");
-                    sb.append(line);
+
+                    // skip IDs that start with 'xxx'
+                    if (line.indexOf("xxx") != 1) {
+                        sb.append(line);
+                    }
+
                     if (counter % LINE_BREAK == 0) {
                         sb.append("\r\n");
                     }
