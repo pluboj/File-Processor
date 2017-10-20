@@ -5,6 +5,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -34,18 +37,32 @@ public class Main extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
+        /* Scene */
         Scene scene = new Scene(grid, 250, 150);
         scene.getStylesheets().add("sample/main.css");
         primaryStage.setScene(scene);
 
+        /* Label */
         Text scenetitle = new Text("File Processor");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
 
+        /* Radio Buttons */
+        final ToggleGroup group = new ToggleGroup();
+        RadioButton toc = new RadioButton("Process ToC");
+        toc.setToggleGroup(group);
+        grid.add(toc, 0, 1);
+        RadioButton cr = new RadioButton("Process CopyRecall");
+        cr.setToggleGroup(group);
+        cr.setSelected(true);
+        cr.requestFocus();
+        grid.add(cr, 0, 2);
+
+        /* Button */
         Button openButton = new Button("Open Resource File");
         HBox hbBtn = new HBox(5);
         hbBtn.getChildren().add(openButton);
-        grid.add(hbBtn, 1, 4);
+        grid.add(hbBtn, 0, 4, 2, 1);
 
         openButton.setOnAction(
                 event -> {
